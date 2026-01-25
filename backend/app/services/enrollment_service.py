@@ -22,7 +22,7 @@ class EnrollmentService:
             name="buffalo_l",
             providers=["CPUExecutionProvider"]
         )
-        self.app.prepare(ctx_id=0, det_size=(640, 640))
+        self.app.prepare(ctx_id=0, det_size=(384, 384))
 
   
 

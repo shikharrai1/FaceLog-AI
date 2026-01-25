@@ -42,6 +42,7 @@ pip install -r requirements.txt
 Create file:
 
 backend/.env
+
 Add:
 
 MONGODB_URI=PASTE_MONGO_URI_HERE
