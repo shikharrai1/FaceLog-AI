@@ -1,0 +1,5 @@
+command to run main.py
+uvicorn app.main:app --reload
+
+command to activate virtual env from backend
+.\venv\Scripts\Activate
