@@ -21,8 +21,10 @@ class EventTracker:
         return f"{hours:02}:{minutes:02}:{secs:02}.{millis:03}"
 
     def update(self, name: str, video_time_sec: float):
+        # print("In event_tracker.py file Inside update function1...")
         #  NEW PERSON (Not in buffer)
         if name not in self.active_sessions:
+            # print("In event_tracker.py file Inside update function2...")
             self.active_sessions[name] = {
                 "entry_time": video_time_sec,
                 "last_seen": video_time_sec,
@@ -35,10 +37,12 @@ class EventTracker:
         time_gap = video_time_sec - session["last_seen"]
 
         if time_gap <= self.time_threshold:
+            # print("In event_tracker.py file Inside update function3...")
             # Still the same interaction. Just update last_seen.
             session["last_seen"] = video_time_sec
             session["detection_count"] += 1
         else:
+            # print("In event_tracker.py file Inside update function4...")
             # TIME GAP EXCEEDED New Session
             self._save_event(name, session)
             
@@ -50,23 +54,27 @@ class EventTracker:
             }
 
     def save_all_remaining(self):
+        # print("In event_tracker.py file Inside update function5...")
         """
         Called at end of video to flush data still in RAM.
         """
         for name, session in self.active_sessions.items():
+            # print("In event_tracker.py file Inside update function6...")
             self._save_event(name, session)
         
         # Clear buffer
         self.active_sessions = {}
 
     def _save_event(self, name: str, session: dict):
+        # print("In event_tracker.py file Inside __save__event function1...")
         """
         Helper to format data and send to DB Repo.
         """
         if session["detection_count"] > 0:
+            # print("In event_tracker.py file Inside __save__event function2...")
             duration = session["last_seen"] - session["entry_time"]
             now = datetime.utcnow()
-            
+            # print("In event_tracker.py file Inside __save__event function3...")
             event_doc = {
                 "name": name,
            
@@ -83,6 +91,6 @@ class EventTracker:
                 "detection_count": session["detection_count"],
                 "created_at": now
             }
-            
+            # print("In event_tracker.py file Inside __save__event function4...")
             print(f" Saving Event: {name} | Date: {event_doc['date']} | Duration: {event_doc['duration']}")
             insert_event(event_doc)
