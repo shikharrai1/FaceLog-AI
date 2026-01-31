@@ -22,6 +22,7 @@ class RecognitionService:
         # print("Backend service Inside Load_known_faces function 1")
         persons = get_all_persons()
         # print("Backend service Inside Load_known_faces function 2")
+        print("total enrolled person : ", len(persons))
         self.known_faces = []
         for p in persons:
             self.known_faces.append({
@@ -75,7 +76,7 @@ class RecognitionService:
                     for face_data in current_faces_data:
                         # print("Backend service Inside process_video function 10")
                         if face_data['is_known']:
-                            # print("fun in event_tracker.py file is being called...")
+                            print("fun in event_tracker.py file is being called...")
                             self.tracker.update(face_data['name'], current_timestamp)
 
                 annotated_frame = self._draw_boxes(frame, current_faces_data)
@@ -130,7 +131,7 @@ class RecognitionService:
         return output_path
 
     def _analyze_frame(self, frame):
-        # print("Backend service Inside _analyze_frame function 1")
+        print("Backend service Inside _analyze_frame function 1")
         img_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         faces = self.app.get(img_rgb)
         results = []
@@ -155,7 +156,7 @@ class RecognitionService:
 
             # Threshold
             is_match = max_score > 0.60
-            # print("Backend service Inside _analyze_frame function 5")
+            print("Backend service Inside _analyze_frame function 5 value of is_match is ", is_match, "and value of best_match_name is : ", best_match_name)
             results.append({
                 "box": face.bbox.astype(int),
                 "name": best_match_name if is_match else "Unknown",

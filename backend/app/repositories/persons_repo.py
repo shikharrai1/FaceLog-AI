@@ -20,6 +20,7 @@ def get_all_persons() -> list:
     Used to load embeddings into memory for recognition.
     """
     # We only need the Name and the Embedding for recognition
+    # get_all_persons() function is called...
     cursor = persons_collection.find(
         {"status": "active"}, 
         {"name": 1, "embedding": 1, "person_id": 1, "_id": 0}

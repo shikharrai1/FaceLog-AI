@@ -21,7 +21,7 @@ class EventTracker:
         return f"{hours:02}:{minutes:02}:{secs:02}.{millis:03}"
 
     def update(self, name: str, video_time_sec: float):
-        # print("In event_tracker.py file Inside update function1...")
+        print("In event_tracker.py file Inside update function1...")
         #  NEW PERSON (Not in buffer)
         if name not in self.active_sessions:
             # print("In event_tracker.py file Inside update function2...")
