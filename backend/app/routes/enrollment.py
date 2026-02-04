@@ -5,6 +5,7 @@ import zipfile
 
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
+from app.services.recognition_service import recognition_service
 
 from app.services.enrollment_service import EnrollmentService
 
@@ -32,6 +33,9 @@ def enroll_single_image(file: UploadFile = File(...)):
     
     try:
         results = enrollment_service.enroll_single_image(tmp_path)
+                #  refresh recognition cache
+        if any(r.get("status") == "enrolled" for r in results):
+            recognition_service.load_known_faces()
         return JSONResponse(content=results)
 
     finally:
@@ -63,6 +67,9 @@ def enroll_folder(file: UploadFile = File(...)):
      
         total = len(results)
         enrolled = sum(1 for r in results if r.get("status") == "enrolled")
+        #  refresh once after batch enrollment
+        if enrolled > 0:
+          recognition_service.load_known_faces()
         failed = total - enrolled
 
         if failed == 0:

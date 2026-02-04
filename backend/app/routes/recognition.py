@@ -5,12 +5,14 @@ import tempfile
 import time 
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
-from app.services.recognition_service import RecognitionService
+# from app.services.recognition_service import RecognitionService
+from app.services.recognition_service import recognition_service
+
 from fastapi.responses import FileResponse
 
 router = APIRouter(prefix="/recognize", tags=["Recognition"])
 
-recognition_service = RecognitionService()
+# recognition_service = RecognitionService()
 
 @router.post("/video")
 def recognize_video(file: UploadFile = File(...)):

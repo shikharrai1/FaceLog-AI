@@ -179,3 +179,5 @@ class RecognitionService:
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
             # print("Backend service Inside _draw_boxes function 4")
         return frame
+    
+recognition_service = RecognitionService()
