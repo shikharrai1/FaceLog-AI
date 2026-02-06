@@ -35,6 +35,7 @@ def enroll_single_image(file: UploadFile = File(...)):
         results = enrollment_service.enroll_single_image(tmp_path)
                 #  refresh recognition cache
         if any(r.get("status") == "enrolled" for r in results):
+            # print("we have something with status enrolled...")
             recognition_service.load_known_faces()
         return JSONResponse(content=results)
 
