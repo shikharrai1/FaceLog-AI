@@ -3,6 +3,7 @@ import React from 'react';
 export default function TabNavigation({ activeTab, setActiveTab }) {
   const tabs = [
     { id: 'enroll', label: 'Enrollment', icon: '👤' },
+    { id: 'live', label: 'Live Monitor', icon: '📡' },
     { id: 'recognize', label: 'Recognition', icon: '🎥' },
     { id: 'manage', label: 'Gallery & Data', icon: '💾' },
   ];

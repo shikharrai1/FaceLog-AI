@@ -57,7 +57,7 @@ def get_logs(name: Optional[str] = None, date: Optional[str] = None):
         query["date"] = date
 
     # Sort by newest first
-    cursor = events_collection.find(query, {"_id": 0}).sort("created_at", -1).limit(100)
+    cursor = events_collection.find(query, {"_id": 0}).sort("created_at", -1)
     
     return list(cursor)
 

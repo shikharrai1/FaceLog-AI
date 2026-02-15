@@ -7,6 +7,7 @@ from app.database import db
 from app.routes.enrollment import router as enrollment_router
 from app.routes.recognition import router as recognition_router
 from app.routes.analysis import router as analysis_router 
+from app.routes.live import router as live_router
 
 app = FastAPI(title="FaceLog-AI")
 
@@ -40,6 +41,7 @@ app.mount(
 app.include_router(enrollment_router)
 app.include_router(recognition_router)
 app.include_router(analysis_router)  
+app.include_router(live_router)
 
 @app.get("/health/db")
 def health_db():

@@ -16,6 +16,7 @@ export default function GalleryPage() {
   // Query/Filter States
   const [searchName, setSearchName] = useState("");
   const [searchDate, setSearchDate] = useState("");
+  
   const [activeSubTab, setActiveSubTab] = useState("gallery"); 
   const [loading, setLoading] = useState(false);
 

@@ -3,3 +3,7 @@ uvicorn app.main:app --reload
 
 command to activate virtual env from backend
 .\venv\Scripts\Activate
+
+Open Browser: Go to http://localhost:8000/live/start (You should see JSON {"status": "started"}).
+
+View Stream: Go to http://localhost:8000/live/video_feed.

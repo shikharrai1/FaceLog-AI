@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { enrollImage } from "../../services/enrollmentApi";
 import EnrollmentResults from "./EnrollmentResults";
